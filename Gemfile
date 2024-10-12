@@ -20,5 +20,5 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
-  gem 'rubocop', '~> 1.6'
+  gem 'rubocop', '~> 1.6', require: false
 end
