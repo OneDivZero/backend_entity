@@ -1,4 +1,4 @@
-$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "backend_entity"
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
-require "minitest/autorun"
+require 'backend_entity'
+require 'minitest/autorun'

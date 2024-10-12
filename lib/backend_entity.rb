@@ -1,4 +1,4 @@
-require_relative "backend_entity/version"
+require_relative 'backend_entity/version'
 
 module BackendEntity
   class Error < StandardError; end
