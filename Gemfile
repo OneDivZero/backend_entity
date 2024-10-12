@@ -5,6 +5,10 @@ gemspec
 
 gem 'rake', '~> 13.0'
 
+group :utils, :default do
+  gem 'colorize'
+end
+
 group :test do
   gem 'guard'
   gem 'guard-minitest'

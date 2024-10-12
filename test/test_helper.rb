@@ -10,6 +10,7 @@ require 'rails'
 require 'rails/test_help'
 require 'minitest/autorun'
 require 'minitest/focus'
+require 'colorize'
 
 require 'backend_entity'
 

@@ -7,6 +7,7 @@ class BackendEntityTest < Minitest::Test
     end
 
     it 'it has a fixed version-number (REMINDER)' do
+      puts "Current version #{::BackendEntity::VERSION}".colorize(:blue)
       assert_equal '0.1.0', ::BackendEntity::VERSION
     end
 
