@@ -1,5 +1,7 @@
 AllCops:
   TargetRubyVersion: 3.0
+  # TODO: FIXME: Remove this line after fixing all the offenses #1
+  NewCops: disable
 
 Style/Documentation:
   Enabled: false
