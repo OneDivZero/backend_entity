@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative "lib/backend_entity/version"
 
 Gem::Specification.new do |spec|
@@ -12,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.description = "---"
   spec.homepage = "https://github.com/OneDivZero/backend_entity"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.0.0"
 
   spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
 
