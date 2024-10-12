@@ -284,7 +284,7 @@ DEPENDENCIES
   pry-rescue
   pry-stack_explorer
   rake (~> 13.0)
-  rubocop (~> 1.21)
+  rubocop (~> 1.6)
 
 BUNDLED WITH
    2.5.2
