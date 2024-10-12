@@ -1,7 +1,7 @@
 require_relative 'backend_entity/version'
 
 module BackendEntity
-  class Error < StandardError; end
+  class GenericError < StandardError; end
 
   def self.version
     BackendEntity::VERSION
