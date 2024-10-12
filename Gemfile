@@ -9,10 +9,6 @@ gem 'minitest-spec-rails', '~> 7.1'
 
 gem 'rubocop', '~> 1.21'
 
-group :test do
-  gem 'rails'
-end
-
 group :development, :test do
   gem 'pry'
   gem 'pry-alias'

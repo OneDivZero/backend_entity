@@ -250,7 +250,7 @@ DEPENDENCIES
   pry-rails
   pry-rescue
   pry-stack_explorer
-  rails
+  rails (~> 7.0)
   rake (~> 13.0)
   rubocop (~> 1.21)
 
