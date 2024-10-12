@@ -1,0 +1,7 @@
+require 'pry'
+require 'pry-alias'
+require 'rails'
+require 'rails/test_help'
+require 'minitest/autorun'
+require 'minitest/focus'
+require 'colorize'

@@ -1,20 +1,11 @@
-$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
-
 #-----------------------------------------------------------------------------------------------------------------------
 # Common Test-Config
 #-----------------------------------------------------------------------------------------------------------------------
 
-require 'pry'
-require 'pry-alias'
-require 'rails'
-require 'rails/test_help'
-require 'minitest/autorun'
-require 'minitest/focus'
-require 'colorize'
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
+require './test/requirements'
 require 'backend_entity'
-
-#-----------------------------------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Test-Support-Config
