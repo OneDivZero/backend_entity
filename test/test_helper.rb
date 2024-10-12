@@ -1,6 +1,28 @@
-# frozen_string_literal: true
+#-----------------------------------------------------------------------------------------------------------------------
+# Common Test-Config
+#-----------------------------------------------------------------------------------------------------------------------
 
-$LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "backend_entity"
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
-require "minitest/autorun"
+require './test/requirements'
+require 'backend_entity'
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Test-Support-Config
+#-----------------------------------------------------------------------------------------------------------------------
+
+# TODO: undefined method `join' for nil:NilClass (NoMethodError) #1
+# %w[support helpers].each do |folder|
+#   Dir[Rails.root.join('test', folder, '**', '*.rb')].sort.each { |f| require f }
+# end
+
+#-----------------------------------------------------------------------------------------------------------------------
+# TestCase-Config
+#-----------------------------------------------------------------------------------------------------------------------
+
+# NOTE: This allows to use modules for shared tests!
+class Module
+  include Minitest::Spec::DSL if Rails.env.test?
+end
+
+#-----------------------------------------------------------------------------------------------------------------------
