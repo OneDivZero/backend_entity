@@ -1,13 +1,14 @@
 require_relative 'lib/backend_entity/version'
 
+# rubocop:disable Layout/LineLength
 Gem::Specification.new do |spec|
   spec.name = 'backend_entity'
   spec.version = BackendEntity::VERSION
   spec.authors = ['Micha']
   spec.email = ['onedivzero@gmx.de']
 
-  spec.summary = 'An abstraction for building simple rails-backend.'
-  spec.description = '---'
+  spec.summary = 'An abstraction for building a simple Rails-Backend.'
+  spec.description = 'BackendEntity reduces the complexity of building a Rails-Backend by providing a simple abstraction.'
   spec.homepage = 'https://github.com/OneDivZero/backend_entity'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.0.0'
@@ -30,10 +31,10 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  # Uncomment to register a new dependency of your gem
   spec.add_dependency 'rails', '~> 7'
   # spec.add_development_dependency 'rails', '~> 7.0'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
 end
+# rubocop:enable Layout/LineLength
