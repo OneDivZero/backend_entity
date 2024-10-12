@@ -8,6 +8,7 @@ gem 'rake', '~> 13.0'
 group :test do
   gem 'guard'
   gem 'guard-minitest'
+  gem 'minitest-focus'
   gem 'minitest-spec-rails', '~> 7.1'
 end
 
