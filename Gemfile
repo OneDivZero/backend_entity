@@ -5,9 +5,11 @@ gemspec
 
 gem 'rake', '~> 13.0'
 
-gem 'minitest-spec-rails', '~> 7.1'
-
-gem 'rubocop', '~> 1.21'
+group :test do
+  gem 'guard'
+  gem 'guard-minitest'
+  gem 'minitest-spec-rails', '~> 7.1'
+end
 
 group :development, :test do
   gem 'pry'
@@ -17,4 +19,5 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
+  gem 'rubocop', '~> 1.21'
 end
