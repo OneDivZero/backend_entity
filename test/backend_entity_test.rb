@@ -2,11 +2,11 @@ require 'test_helper'
 
 class BackendEntityTest < Minitest::Test
   describe 'Gem' do
-    it 'it has a version-number' do
+    it 'has a version-number' do
       assert ::BackendEntity::VERSION
     end
 
-    it 'it has a fixed version-number (REMINDER)' do
+    it 'has a fixed version-number (REMINDER)' do
       puts "Current version #{::BackendEntity::VERSION}".colorize(:blue)
       assert_equal '0.1.0', ::BackendEntity::VERSION
     end
