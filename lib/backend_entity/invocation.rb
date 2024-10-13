@@ -2,9 +2,11 @@ module BackendEntity
   module Invocation
     extend ActiveSupport::Concern
 
+    class UnknownEntityType < StandardError; end
+
     included do
       class_attribute :entity_model_name, :current_entity_name, :current_entity_class
-      # class_attribute :entity_name, :entity_model, :entity_class
+      # class_attribute :entity_name, :entity_model, :entity_class #OPT!
     end
 
     module ClassMethods
@@ -15,38 +17,42 @@ module BackendEntity
       def controller_class
         controller_class_name.constantize
       end
+
+      def derive_entity_name
+        inferred_entity_name = controller_class.entity_model_name.presence || controller_name.classify.demodulize
+
+        raise UnknownEntityType unless const_defined?(inferred_entity_name)
+
+        inferred_entity_name
+      end
+
+      def entity_name
+        self.current_entity_name = derive_entity_name
+      end
+
+      def entity_class
+        self.current_entity_class = entity_name.is_a?(Class) ? entity_name : entity_name.constantize
+      end
     end
 
-    # class << self
-    #   def included(base)
-    #     base.extend(ClassMethods)
-    #   end
-    # end
+    protected def entity_name
+      @current_entity_name = self.class.entity_name
+    end
 
-    # module ClassMethods
-    #   def access(*args)
-    #     options = args.extract_options!
-    #     options[:only] = args
-    #     options[:except] = [] if options[:only].present?
-    #     options[:except] = args if options[:only].blank?
+    protected def entity_class
+      @current_entity_class = self.class.entity_class
+    end
 
-    #     before_action(options) do
-    #       access = Access.new(self)
-    #       access.check_permissions
-    #     end
-    #   end
-    # end
+    protected def entity_key
+      entity_name.underscore.to_sym
+    end
 
-    # def initialize(controller)
-    #   @controller = controller
-    # end
+    protected def entity_id_key
+      entity_name.underscore.concat('_id').to_sym
+    end
 
-    # def check_permissions
-    #   return if @controller.current_user&.admin?
-
-    #   if @controller.action_name.in?(options[:except])
-    #     raise BackendEntity::GenericError, 'You are not allowed to access this resource.'
-    #   end
-    # end
+    protected def entity_inherited?
+      entity_class.column_names.include?('type')
+    end
   end
 end
