@@ -2,6 +2,8 @@ module BackendEntity
   module Access
     extend ActiveSupport::Concern
 
+    include BackendEntity::Scopes
+
     class UnknownEntityType < StandardError; end
 
     included do
@@ -9,6 +11,7 @@ module BackendEntity
       # class_attribute :entity_name, :entity_model, :entity_class #OPT! #3
     end
 
+    # Class-methods for detecting the desired entity
     module ClassMethods
       def controller_class_name
         "#{controller_path.classify.pluralize}Controller"
@@ -53,6 +56,17 @@ module BackendEntity
 
     protected def entity_inherited?
       entity_class.column_names.include?('type')
+    end
+
+    # NOTE: This extra-step is required for handling overrides in entity-concerns!
+    # e.g. when overriding :list_entities in a controller, module Backend::EntityFilterable will not work any more,
+    # cause :list_entities is enhanced by this concern and we call super on it.
+    protected def list_entities
+      load_entities
+    end
+
+    protected def load_entities
+      entity_has_backend_scope? ? entity_class.public_send(backend_entity_scope).all : entity_class.all
     end
   end
 end

@@ -1,11 +1,10 @@
 require 'test_helper'
 
-require 'active_record'
-require 'temping'
-
 module BackendEntity
   # Minitest::Test
   class AccessTest < ActiveSupport::TestCase
+    class ::Example < ::ActiveRecord::Base; end
+
     class ::ExamplesController < ::ActionController::Base
       include BackendEntity::Access
     end
@@ -13,8 +12,6 @@ module BackendEntity
     class ::InheritedExamplesController < ::ActionController::Base
       include BackendEntity::Access
     end
-
-    class ::Example < ::ActiveRecord::Base; end
 
     describe 'Concern' do
       it 'provides accessors for the metadata of an entity' do
@@ -56,7 +53,7 @@ module BackendEntity
       end
     end
 
-    describe 'Instance' do
+    describe 'Entity-Instance-Methods' do
       before do
         @controller = ExamplesController.new
       end
@@ -91,6 +88,20 @@ module BackendEntity
         it 'provides a method for detecting entity-inheritation' do
           assert @controller.send(:entity_inherited?)
         end
+      end
+    end
+
+    describe 'Fetching entities' do
+      before do
+        @controller = ExamplesController.new
+      end
+
+      it 'lists entities' do
+        assert_equal 'ActiveRecord::Relation', @controller.send(:list_entities).class.name
+      end
+
+      it 'loads entities' do
+        assert_equal 'ActiveRecord::Relation', @controller.send(:load_entities).class.name
       end
     end
   end

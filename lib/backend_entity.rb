@@ -1,4 +1,5 @@
 require_relative 'backend_entity/version'
+require_relative 'backend_entity/scopes'
 require_relative 'backend_entity/access'
 
 module BackendEntity
