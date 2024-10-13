@@ -1,5 +1,5 @@
 module BackendEntity
-  module Access
+  module Reflection
     extend ActiveSupport::Concern
 
     include BackendEntity::Scopes

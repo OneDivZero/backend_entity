@@ -1,15 +1,15 @@
 require 'test_helper'
 
 module BackendEntity
-  class AccessTest < ActiveSupport::TestCase
+  class ReflectionTest < ActiveSupport::TestCase
     class ::Example < ::ActiveRecord::Base; end
 
     class ::ExamplesController < ::ActionController::Base
-      include BackendEntity::Access
+      include BackendEntity::Reflection
     end
 
     class ::InheritedExamplesController < ::ActionController::Base
-      include BackendEntity::Access
+      include BackendEntity::Reflection
     end
 
     describe 'Concern' do
@@ -44,7 +44,7 @@ module BackendEntity
       describe 'Error' do
         it 'raises an error for an unknown entity-type' do
           ExamplesController.stub(:controller_name, 'UnknownController') do
-            assert_raises(BackendEntity::Access::UnknownEntityType) do
+            assert_raises(BackendEntity::Reflection::UnknownEntityType) do
               ExamplesController.derive_entity_name
             end
           end
