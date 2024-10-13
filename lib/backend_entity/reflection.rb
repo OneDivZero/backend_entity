@@ -2,8 +2,6 @@ module BackendEntity
   module Reflection
     extend ActiveSupport::Concern
 
-    class UnknownEntityType < StandardError; end
-
     included do
       class_attribute :entity_model_name, :current_entity_name, :current_entity_class
       # class_attribute :entity_name, :entity_model, :entity_class #OPT! #3
@@ -22,7 +20,7 @@ module BackendEntity
       def derive_entity_name
         inferred_entity_name = controller_class.entity_model_name.presence || controller_name.classify.demodulize
 
-        raise UnknownEntityType unless const_defined?(inferred_entity_name)
+        raise BackendEntity::UnresolveableEntityType unless const_defined?(inferred_entity_name)
 
         inferred_entity_name
       end

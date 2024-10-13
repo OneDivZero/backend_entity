@@ -44,7 +44,7 @@ module BackendEntity
       describe 'Error' do
         it 'raises an error for an unknown entity-type' do
           ExamplesController.stub(:controller_name, 'UnknownController') do
-            assert_raises(BackendEntity::Reflection::UnknownEntityType) do
+            assert_raises(BackendEntity::UnresolveableEntityType) do
               ExamplesController.derive_entity_name
             end
           end
@@ -71,6 +71,10 @@ module BackendEntity
 
       it 'provides the entity-id-key as a symbole' do
         assert_equal :example_id, @controller.send(:entity_id_key)
+      end
+
+      it 'provides a method for detecting entity-inheritation' do
+        assert @controller.respond_to?(:entity_inherited?, true) # protected!
       end
 
       describe 'entity-inheritation' do
