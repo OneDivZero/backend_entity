@@ -1,6 +1,7 @@
 require 'test_helper'
 
-class BackendEntityTest < ActiveSupport::TestCase # Minitest::Test
+# Minitest::Test
+class BackendEntityTest < ActiveSupport::TestCase
   describe 'Gem' do
     it 'has a version-number' do
       assert ::BackendEntity::VERSION

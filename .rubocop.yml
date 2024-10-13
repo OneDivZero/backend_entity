@@ -3,6 +3,17 @@ AllCops:
   # TODO: FIXME: Remove this line after fixing all the offenses #1
   NewCops: disable
 
+Layout/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - 'test/**/*.rb'
+
+# Allow inline declaration 'private def bar; end'
+Style/AccessModifierDeclarations:
+  EnforcedStyle: inline
+
 Style/Documentation:
   Enabled: false
 
@@ -16,6 +27,3 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Enabled: true
   EnforcedStyle: double_quotes
-
-Layout/LineLength:
-  Max: 120

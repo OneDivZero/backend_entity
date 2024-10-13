@@ -3,7 +3,8 @@ require 'test_helper'
 require 'active_record'
 
 module BackendEntity
-  class InvocationTest < ActiveSupport::TestCase #Minitest::Test
+  # Minitest::Test
+  class InvocationTest < ActiveSupport::TestCase
     class ::ExamplesController < ::ActionController::Base
       include BackendEntity::Invocation
     end
@@ -21,8 +22,8 @@ module BackendEntity
         assert ExamplesController.respond_to?(:controller_class_name)
         assert ExamplesController.respond_to?(:controller_class)
 
-         assert_equal 'ExamplesController', ExamplesController.controller_class_name
-         assert_equal ExamplesController.name, ExamplesController.controller_class.name
+        assert_equal 'ExamplesController', ExamplesController.controller_class_name
+        assert_equal ExamplesController.name, ExamplesController.controller_class.name
       end
 
       it 'can derive the entity-name' do
