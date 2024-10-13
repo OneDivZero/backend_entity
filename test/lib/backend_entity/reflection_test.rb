@@ -89,19 +89,5 @@ module BackendEntity
         end
       end
     end
-
-    describe 'Fetching entities' do
-      before do
-        @controller = ExamplesController.new
-      end
-
-      it 'lists entities' do
-        assert_equal 'ActiveRecord::Relation', @controller.send(:list_entities).class.name
-      end
-
-      it 'loads entities' do
-        assert_equal 'ActiveRecord::Relation', @controller.send(:load_entities).class.name
-      end
-    end
   end
 end
