@@ -1,5 +1,5 @@
 module BackendEntity
-  module Invocation
+  module Access
     extend ActiveSupport::Concern
 
     class UnknownEntityType < StandardError; end

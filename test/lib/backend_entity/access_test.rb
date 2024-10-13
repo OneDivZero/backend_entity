@@ -4,9 +4,9 @@ require 'active_record'
 
 module BackendEntity
   # Minitest::Test
-  class InvocationTest < ActiveSupport::TestCase
+  class AccessTest < ActiveSupport::TestCase
     class ::ExamplesController < ::ActionController::Base
-      include BackendEntity::Invocation
+      include BackendEntity::Access
     end
 
     class ::Example < ::ActiveRecord::Base; end
@@ -43,7 +43,7 @@ module BackendEntity
       describe 'Error' do
         it 'raises an error for an unknown entity-type' do
           ExamplesController.stub(:controller_name, 'UnknownController') do
-            assert_raises(BackendEntity::Invocation::UnknownEntityType) do
+            assert_raises(BackendEntity::Access::UnknownEntityType) do
               ExamplesController.derive_entity_name
             end
           end
