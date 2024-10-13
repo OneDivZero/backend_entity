@@ -7,8 +7,14 @@ module BackendEntity
       # class_attribute :entity_name, :entity_model, :entity_class
     end
 
-    module ClassMethods do
+    module ClassMethods
+      def controller_class_name
+        "#{controller_path.classify.pluralize}Controller"
+      end
 
+      def controller_class
+        controller_class_name.constantize
+      end
     end
 
     # class << self
@@ -43,3 +49,4 @@ module BackendEntity
     #   end
     # end
   end
+end

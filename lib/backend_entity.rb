@@ -1,4 +1,5 @@
 require_relative 'backend_entity/version'
+require_relative 'backend_entity/invocation'
 
 module BackendEntity
   class GenericError < StandardError; end
