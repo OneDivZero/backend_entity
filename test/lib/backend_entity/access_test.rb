@@ -1,11 +1,16 @@
 require 'test_helper'
 
 require 'active_record'
+require 'temping'
 
 module BackendEntity
   # Minitest::Test
   class AccessTest < ActiveSupport::TestCase
     class ::ExamplesController < ::ActionController::Base
+      include BackendEntity::Access
+    end
+
+    class ::InheritedExamplesController < ::ActionController::Base
       include BackendEntity::Access
     end
 
@@ -70,6 +75,22 @@ module BackendEntity
 
       it 'provides the entity-id-key as a symbole' do
         assert_equal :example_id, @controller.send(:entity_id_key)
+      end
+
+      describe 'entity-inheritation' do
+        before do
+          ::Temping.create :inherited_example do
+            with_colums do |t|
+              t.string :type
+            end
+          end
+
+          @controller = InheritedExamplesController.new
+        end
+
+        it 'provides a method for detecting entity-inheritation' do
+          assert_not @controller.send(:entity_inherited?)
+        end
       end
     end
   end

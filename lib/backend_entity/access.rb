@@ -6,7 +6,7 @@ module BackendEntity
 
     included do
       class_attribute :entity_model_name, :current_entity_name, :current_entity_class
-      # class_attribute :entity_name, :entity_model, :entity_class #OPT!
+      # class_attribute :entity_name, :entity_model, :entity_class #OPT! #3
     end
 
     module ClassMethods

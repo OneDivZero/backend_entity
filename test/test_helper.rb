@@ -20,6 +20,15 @@ require 'backend_entity'
 # TestCase-Config
 #-----------------------------------------------------------------------------------------------------------------------
 
+module ActiveSupport
+  class TestCase
+    teardown do
+      Temping.teardown # Required global teardown for gem 'temping'
+    end
+  end
+end
+
+
 # NOTE: This allows to use modules for shared tests!
 class Module
   include Minitest::Spec::DSL if Rails.env.test?
