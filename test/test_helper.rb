@@ -35,7 +35,6 @@ module ActiveSupport
   end
 end
 
-
 # NOTE: This allows to use modules for shared tests!
 class Module
   include Minitest::Spec::DSL if Rails.env.test?
