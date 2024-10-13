@@ -254,6 +254,9 @@ GEM
       parser (>= 3.3.1.0)
     ruby-progressbar (1.13.0)
     shellany (0.0.1)
+    sqlite3 (2.0.4)
+      mini_portile2 (~> 2.8.0)
+    sqlite3 (2.0.4-arm64-darwin)
     stringio (3.1.1)
     temping (4.2.0)
       activerecord (>= 6.0, < 7.3)
@@ -290,6 +293,7 @@ DEPENDENCIES
   pry-stack_explorer
   rake (~> 13.0)
   rubocop (~> 1.6)
+  sqlite3
   temping
 
 BUNDLED WITH

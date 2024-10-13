@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'rails', '~> 7'
   spec.add_development_dependency 'temping'
+  spec.add_development_dependency 'sqlite3'
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

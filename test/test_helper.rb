@@ -20,6 +20,13 @@ require 'backend_entity'
 # TestCase-Config
 #-----------------------------------------------------------------------------------------------------------------------
 
+require 'active_record'
+
+ActiveRecord::Base.establish_connection(
+  adapter: 'sqlite3',
+  database: ':memory:'
+)
+
 module ActiveSupport
   class TestCase
     teardown do

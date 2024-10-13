@@ -80,7 +80,7 @@ module BackendEntity
       describe 'entity-inheritation' do
         before do
           ::Temping.create :inherited_example do
-            with_colums do |t|
+            with_columns do |t|
               t.string :type
             end
           end
@@ -89,7 +89,7 @@ module BackendEntity
         end
 
         it 'provides a method for detecting entity-inheritation' do
-          assert_not @controller.send(:entity_inherited?)
+          assert @controller.send(:entity_inherited?)
         end
       end
     end
