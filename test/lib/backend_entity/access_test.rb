@@ -1,7 +1,6 @@
 require 'test_helper'
 
 module BackendEntity
-  # Minitest::Test
   class AccessTest < ActiveSupport::TestCase
     class ::Example < ::ActiveRecord::Base; end
 
