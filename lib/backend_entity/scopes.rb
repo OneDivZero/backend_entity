@@ -1,6 +1,4 @@
 module BackendEntity
-  class UnknownEntityScope < StandardError; end
-
   module Scopes
     extend ActiveSupport::Concern
 

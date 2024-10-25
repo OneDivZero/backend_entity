@@ -1,11 +1,13 @@
 require_relative 'backend_entity/version'
 require_relative 'backend_entity/reflection'
 require_relative 'backend_entity/scopes'
+require_relative 'backend_entity/params'
 require_relative 'backend_entity/fetching'
 
 module BackendEntity
   class GenericError < StandardError; end
   class UnresolveableEntityType < StandardError; end
+  class UnknownEntityScope < StandardError; end
 
   def self.version
     BackendEntity::VERSION
