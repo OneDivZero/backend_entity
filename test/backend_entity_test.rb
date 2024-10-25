@@ -15,5 +15,13 @@ class BackendEntityTest < ActiveSupport::TestCase
     it 'provides a generic error-class' do
       assert Object.const_defined?('BackendEntity::GenericError')
     end
+
+    it 'provides an error-class for unresolveable types' do
+      assert Object.const_defined?('BackendEntity::UnresolveableEntityType')
+    end
+
+    it 'provides an error-class for unknown scope' do
+      assert Object.const_defined?('BackendEntity::UnknownEntityScope')
+    end
   end
 end
