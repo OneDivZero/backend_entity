@@ -2,9 +2,13 @@ require 'test_helper'
 
 module BackendEntity
   class ReflectionTest < ActiveSupport::TestCase
-    class ::Example < ::ActiveRecord::Base; end
+    class ::Example < ::ActiveRecord::Base; end # NOTE: This clashes with Temping!
 
     class ::ExamplesController < ::ActionController::Base
+      include BackendEntity::Reflection
+    end
+
+    class ::AnotherExamplesController < ::ActionController::Base
       include BackendEntity::Reflection
     end
 
@@ -69,7 +73,7 @@ module BackendEntity
         assert_equal :example, @controller.send(:entity_key)
       end
 
-      it 'provides the entity-id-key as a symbole' do
+      it 'provides the entity-id-key as a symbol' do
         assert_equal :example_id, @controller.send(:entity_id_key)
       end
 
@@ -77,24 +81,33 @@ module BackendEntity
         assert @controller.respond_to?(:entity_inherited?, true) # protected!
       end
 
-      # TODO: FIXME #3
-      # it 'detects entity-inheritation' do
-      #   refute @controller.send(:entity_inherited?)
-      # end
-
       describe 'entity-inheritation' do
         before do
+          ::Temping.create :another_example do
+            with_columns do |t|
+            end
+          end
+
           ::Temping.create :inherited_example do
             with_columns do |t|
               t.string :type
             end
           end
 
-          @controller = InheritedExamplesController.new
+          @another_controller = AnotherExamplesController.new
+          @inherited_controller = InheritedExamplesController.new
+        end
+
+        after do
+          Temping.teardown # NOTE: Required cause global teardown for gem 'temping' does not work!!!
         end
 
         it 'detects entity-inheritation' do
-          assert @controller.send(:entity_inherited?)
+          refute @another_controller.send(:entity_inherited?)
+        end
+
+        it 'detects entity-inheritation when an entity is inherited' do
+          assert @inherited_controller.send(:entity_inherited?)
         end
       end
     end

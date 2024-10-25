@@ -29,7 +29,10 @@ ActiveRecord::Base.establish_connection(
 
 module ActiveSupport
   class TestCase
+    # TODO: #teardown never get's invoked during the tests #3
     teardown do
+      puts 'ActiveSupport::TestCase.teardown'.colorize(:green)
+      raise
       Temping.teardown # Required global teardown for gem 'temping'
     end
   end
