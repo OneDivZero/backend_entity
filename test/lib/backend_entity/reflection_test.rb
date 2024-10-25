@@ -77,6 +77,11 @@ module BackendEntity
         assert @controller.respond_to?(:entity_inherited?, true) # protected!
       end
 
+      # TODO: FIXME #3
+      # it 'detects entity-inheritation' do
+      #   refute @controller.send(:entity_inherited?)
+      # end
+
       describe 'entity-inheritation' do
         before do
           ::Temping.create :inherited_example do
@@ -88,7 +93,7 @@ module BackendEntity
           @controller = InheritedExamplesController.new
         end
 
-        it 'provides a method for detecting entity-inheritation' do
+        it 'detects entity-inheritation' do
           assert @controller.send(:entity_inherited?)
         end
       end

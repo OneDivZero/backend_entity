@@ -1,8 +1,8 @@
 require 'test_helper'
 
 module BackendEntity
-  class ReflectionTest < ActiveSupport::TestCase
-    class ::Example < ::ActiveRecord::Base; end
+  class FetchingTest < ActiveSupport::TestCase
+    # class ::Example < ::ActiveRecord::Base; end
 
     class ::ExamplesController < ::ActionController::Base
       include BackendEntity::Reflection
@@ -20,6 +20,23 @@ module BackendEntity
 
       it 'loads entities' do
         assert_equal 'ActiveRecord::Relation', @controller.send(:load_entities).class.name
+      end
+    end
+
+    describe 'Fetching a single entity' do
+      before do
+        ::Temping.create :example do
+          with_columns do |t|
+            # t.integer :id # Causes: ActiveRecord::StatementInvalid: SQLite3::SQLException: duplicate column name: id
+          end
+        end
+
+        @example = Example.create
+        @controller = ExamplesController.new
+      end
+
+      it 'loads a single entity' do
+        assert_equal 'Example', @controller.send(:load_entity, @example.id).class.name
       end
     end
   end
