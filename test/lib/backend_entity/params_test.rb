@@ -10,6 +10,12 @@ module BackendEntity
       include BackendEntity::Params
     end
 
+    class ::AnotherExamplesController < ::ActionController::Base
+      include BackendEntity::Reflection
+      include BackendEntity::Scopes
+      include BackendEntity::Params
+    end
+
     describe 'Action-Support-Methods' do
       before do
         @controller = ::ExamplesController.new
@@ -52,6 +58,33 @@ module BackendEntity
       it 'raises UnresolveableIdParameter if no strategy for retrieving an ID is applicable' do
         @controller.send(:"params=", {})
         assert_raises(BackendEntity::Params::UnresolveableIdParameter) { @controller.send(:id_from_params) }
+      end
+    end
+
+    describe 'Entity-Parameter-Methods' do
+      before do
+        ::Temping.create :another_example do
+          with_columns do |t|
+            # t.integer :id # Causes: ActiveRecord::StatementInvalid: SQLite3::SQLException: duplicate column name: id
+          end
+        end
+
+        # @example = ::AnotherExample.create
+        @controller = ::AnotherExamplesController.new
+      end
+
+      after do
+        Temping.teardown # NOTE: Required cause global teardown for gem 'temping' does not work!!!
+      end
+
+      it 'retrieves entity-params from controller-params' do
+        @controller.send(:"params=", { another_example: { name: 'Example' } })
+        # @controller.send(:"params=", { another_example: { } })
+        # @controller.send(:"params=", { another_example: nil })
+
+        assert_equal ActionController::Parameters, @controller.send(:entity_params).class
+        # TODO: Why they are permitted when using { another_example: { name: 'Example' } } ??? #3
+        assert @controller.send(:entity_params).permitted?
       end
     end
   end
