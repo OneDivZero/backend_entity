@@ -44,7 +44,8 @@ module BackendEntity
         Temping.teardown # NOTE: Required cause global teardown for gem 'temping' does not work!!!
       end
 
-      it 'loads a single entity' do
+      it 'loads a single entity for a given id' do
+        @controller.send(:"params=", { action: 'new' })
         assert_equal 'AnotherExample', @controller.send(:load_entity, @example.id).class.name
       end
     end
