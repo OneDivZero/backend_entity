@@ -1,5 +1,5 @@
 module BackendEntity
-  module Params
+  module ParameterHandling
     extend ActiveSupport::Concern
 
     class UnresolveableIdParameter < StandardError; end
