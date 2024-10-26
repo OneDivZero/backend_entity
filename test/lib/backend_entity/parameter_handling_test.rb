@@ -32,32 +32,32 @@ module BackendEntity
       end
     end
 
-    describe 'ID-Resolving-Methods' do
+    describe 'Entity-ID-Resolving-Methods' do
       before do
         @controller = ::ExamplesController.new
       end
 
-      it 'retrieves an ID from params' do
+      it 'retrieves an ID for the entity from params' do
         id = 1
         @controller.send(:"params=", { id: id })
-        assert_equal id, @controller.send(:id_from_params)
+        assert_equal id, @controller.send(:entitiy_id_from_params)
       end
 
-      it 'retrieves an ID from params when invoked with an alternative-key' do
+      it 'retrieves an ID for the entity from params when invoked with an alternative-key' do
         id = 2
         @controller.send(:"params=", { alternative_id: id })
-        assert_equal id, @controller.send(:id_from_params, :alternative_id)
+        assert_equal id, @controller.send(:entitiy_id_from_params, :alternative_id)
       end
 
-      it 'retrieves an ID from params when invoked with an alternative-key taking precedence over params[:idi]' do
+      it 'retrieves an ID for the entity from params when invoked with an alternative-key taking precedence over params[:idi]' do
         id = 2
         @controller.send(:"params=", { alternative_id: id, id: 3 })
-        assert_equal id, @controller.send(:id_from_params, :alternative_id)
+        assert_equal id, @controller.send(:entitiy_id_from_params, :alternative_id)
       end
 
       it 'raises UnresolveableIdParameter if no strategy for retrieving an ID is applicable' do
         @controller.send(:"params=", {})
-        assert_raises(BackendEntity::ParameterHandling::UnresolveableIdParameter) { @controller.send(:id_from_params) }
+        assert_raises(BackendEntity::ParameterHandling::UnresolveableIdParameter) { @controller.send(:entitiy_id_from_params) }
       end
     end
 

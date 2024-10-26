@@ -14,7 +14,7 @@ module BackendEntity
 
     # Resolves an id from params for a given alternative-key or common id-key
     # or a key based on entitiy-name ending with suffix '_id'
-    protected def id_from_params(alternative_id_key = nil)
+    protected def entitiy_id_from_params(alternative_id_key = nil)
       params[alternative_id_key&.to_sym] || params[:id] || params[entity_id_key] || raise(UnresolveableIdParameter)
     end
 

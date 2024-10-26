@@ -37,7 +37,7 @@ module ActiveSupport
     # TODO: #teardown never get's invoked during the tests #3
     teardown do
       puts 'ActiveSupport::TestCase.teardown'.colorize(:green)
-      raise 'ActiveSupport::TestCase.teardown'
+      # raise 'ActiveSupport::TestCase.teardown'
       Temping.teardown # Required global teardown for gem 'temping'
     end
   end

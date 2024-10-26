@@ -1,7 +1,7 @@
 module BackendEntity
   module Fetching
     include BackendEntity::Scopes
-    include BackendEntity::Params
+    include BackendEntity::ParameterHandling
 
     # NOTE: This extra-step is required for handling overrides in entity-concerns!
     # e.g. when overriding :list_entities in a controller, module Backend::EntityFilterable will not work any more,
