@@ -50,11 +50,15 @@ module BackendEntity
       entity_name.underscore.concat('_id').to_sym
     end
 
-    protected def entity_inherited?
-      entity_class.column_names.include?('type')
+    protected def entity_column_names
+      entity_class.column_names.collect(&:to_sym)
     end
 
-    # TODO: Rework this concept! #3
+    protected def entity_inherited?
+      entity_column_names.include?(:type)
+    end
+
+    # TODO: Rework this concept ... and this the wrong place! #3
     protected def restrict_action
       raise NonAllowedAction
     end

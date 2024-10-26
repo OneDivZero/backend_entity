@@ -26,7 +26,7 @@ module BackendEntity
       # TODO: Use a logger instead! #3
       puts '[WARNING] #entity_params is using all entity-columns in your controller!'.colorize(:yellow) if using.blank?
 
-      allowed = using.blank? ? entity_class.column_names : using
+      allowed = using.blank? ? entity_column_names : using
 
       params.require(entity_key).permit(*allowed)
     end
