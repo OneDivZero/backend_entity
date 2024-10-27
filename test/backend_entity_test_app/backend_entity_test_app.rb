@@ -2,7 +2,11 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require 'rails/all'
 
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+# ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Setup of rails-test-app
+#-----------------------------------------------------------------------------------------------------------------------
 
 module BackendEntityTestApp
   class Application < Rails::Application
@@ -22,6 +26,7 @@ module BackendEntityTestApp
     config.logger = ActiveSupport::Logger.new($stdout)
 
     # config.action_mailer.delivery_method = :test
+    # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
     config.after_initialize do |app|
       app.routes_reloader.reload!
@@ -30,3 +35,11 @@ module BackendEntityTestApp
 end
 
 BackendEntityTestApp::Application.initialize!
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Setup of routing
+#-----------------------------------------------------------------------------------------------------------------------
+
+BackendEntityTestApp::Application.routes.draw do
+  resources :examples
+end
