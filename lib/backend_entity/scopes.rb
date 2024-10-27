@@ -1,6 +1,7 @@
 module BackendEntity
   module Scopes
     extend ActiveSupport::Concern
+    # NOTE: Fully migrated but not yet tested!
 
     protected def backend_entity_scope
       :backend

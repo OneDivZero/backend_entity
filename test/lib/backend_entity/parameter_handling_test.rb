@@ -40,24 +40,24 @@ module BackendEntity
       it 'retrieves an ID for the entity from params' do
         id = 1
         @controller.send(:"params=", { id: id })
-        assert_equal id, @controller.send(:entitiy_id_from_params)
+        assert_equal id, @controller.send(:entity_id_from_params)
       end
 
       it 'retrieves an ID for the entity from params when invoked with an alternative-key' do
         id = 2
         @controller.send(:"params=", { alternative_id: id })
-        assert_equal id, @controller.send(:entitiy_id_from_params, :alternative_id)
+        assert_equal id, @controller.send(:entity_id_from_params, :alternative_id)
       end
 
       it 'retrieves an ID for the entity from params when invoked with an alternative-key taking precedence over params[:idi]' do
         id = 2
         @controller.send(:"params=", { alternative_id: id, id: 3 })
-        assert_equal id, @controller.send(:entitiy_id_from_params, :alternative_id)
+        assert_equal id, @controller.send(:entity_id_from_params, :alternative_id)
       end
 
       it 'raises UnresolveableIdParameter if no strategy for retrieving an ID is applicable' do
         @controller.send(:"params=", {})
-        assert_raises(BackendEntity::ParameterHandling::UnresolveableIdParameter) { @controller.send(:entitiy_id_from_params) }
+        assert_raises(BackendEntity::ParameterHandling::UnresolveableIdParameter) { @controller.send(:entity_id_from_params) }
       end
     end
 
