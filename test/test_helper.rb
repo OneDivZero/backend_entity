@@ -6,6 +6,7 @@ $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
 require './test/requirements'
 require 'backend_entity'
+require 'backend_entity_test_app/backend_entity_test_app'
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Test-Support-Config
