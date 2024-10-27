@@ -20,6 +20,10 @@ class BackendEntityTest < ActiveSupport::TestCase
       assert Object.const_defined?('BackendEntity::UnresolveableEntityType')
     end
 
+    it 'provides an error-class for unknown types' do
+      assert Object.const_defined?('BackendEntity::UnknownEntityType')
+    end
+
     it 'provides an error-class for unknown scope' do
       assert Object.const_defined?('BackendEntity::UnknownEntityScope')
     end

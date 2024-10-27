@@ -7,6 +7,7 @@ require_relative 'backend_entity/fetching'
 module BackendEntity
   class GenericError < StandardError; end
   class UnresolveableEntityType < StandardError; end
+  class UnknownEntityType < StandardError; end
   class UnknownEntityScope < StandardError; end
 
   def self.version

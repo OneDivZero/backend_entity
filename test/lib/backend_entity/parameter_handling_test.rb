@@ -86,6 +86,21 @@ module BackendEntity
         # TODO: Why they are permitted when using { another_example: { name: 'Example' } } ??? #3
         assert @controller.send(:entity_params).permitted?
       end
+
+      it 'detects the type of an entity via :entity_type_from_params' do
+        @controller.send(:"params=", { another_example: { type: 'AnotherExample' } })
+        assert_equal 'AnotherExample', @controller.send(:entity_type_from_params)
+      end
+
+      it 'fails if the type of an entity is unknown via :entity_type_from_params' do
+        @controller.send(:"params=", { another_example: { type: 'UnknownEntity' } })
+        assert_raises(BackendEntity::UnknownEntityType) { @controller.send(:entity_type_from_params) }
+      end
+
+      it 'returns the class of an entity' do
+        @controller.send(:"params=", { another_example: { type: 'AnotherExample' } })
+        assert_equal AnotherExample, @controller.send(:entity_class_from_params)
+      end
     end
   end
 end

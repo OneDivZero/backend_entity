@@ -58,6 +58,15 @@ module BackendEntity
       entity_column_names.include?(:type)
     end
 
+    protected def known_entity?(type)
+      entity_list.include?(type)
+    end
+
+    protected def entity_list
+      # Rails.application.eager_load! # Maybe required? #3
+      ::ActiveRecord::Base.descendants.collect(&:name)
+    end
+
     # TODO: Rework this concept ... and this the wrong place! #3
     protected def restrict_action
       raise NonAllowedAction

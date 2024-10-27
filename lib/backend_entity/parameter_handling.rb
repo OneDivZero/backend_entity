@@ -30,5 +30,19 @@ module BackendEntity
 
       params.require(entity_key).permit(*allowed)
     end
+
+    # Required for detecting STI-Subtypes if the entity-key is a generic one
+    protected def entity_type_from_params
+      type = params[entity_key]&.dig(:type)
+
+      raise BackendEntity::UnknownEntityType unless known_entity?(type)
+
+      type
+    end
+
+    protected def entity_class_from_params
+      class_name = entity_type_from_params
+      class_name.constantize if class_name.present?
+    end
   end
 end
