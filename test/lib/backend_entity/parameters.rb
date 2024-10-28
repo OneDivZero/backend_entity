@@ -1,19 +1,17 @@
 require 'test_helper'
 
 module BackendEntity
-  class ParameterHandlingTest < ActiveSupport::TestCase
-    class ::Example < ::ActiveRecord::Base; end
-
+  class ParametersTest < ActiveSupport::TestCase
     class ::ExamplesController < ::ActionController::Base
       include BackendEntity::Reflection
       include BackendEntity::Scopes
-      include BackendEntity::ParameterHandling
+      include BackendEntity::Parameters
     end
 
     class ::AnotherExamplesController < ::ActionController::Base
       include BackendEntity::Reflection
       include BackendEntity::Scopes
-      include BackendEntity::ParameterHandling
+      include BackendEntity::Parameters
     end
 
     describe 'Action-Support-Methods' do
@@ -57,7 +55,7 @@ module BackendEntity
 
       it 'raises UnresolveableIdParameter if no strategy for retrieving an ID is applicable' do
         @controller.send(:"params=", {})
-        assert_raises(BackendEntity::ParameterHandling::UnresolveableIdParameter) { @controller.send(:entity_id_from_params) }
+        assert_raises(BackendEntity::Parameters::UnresolveableIdParameter) { @controller.send(:entity_id_from_params) }
       end
     end
 

@@ -1,7 +1,7 @@
 require_relative 'backend_entity/version'
 require_relative 'backend_entity/reflection'
 require_relative 'backend_entity/scopes'
-require_relative 'backend_entity/parameter_handling'
+require_relative 'backend_entity/parameters'
 require_relative 'backend_entity/fetching'
 require_relative 'backend_entity/routes'
 require_relative 'backend_entity/actions'

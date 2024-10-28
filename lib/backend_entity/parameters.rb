@@ -1,16 +1,16 @@
 module BackendEntity
-  module ParameterHandling
+  module Parameters
     extend ActiveSupport::Concern
     # NOTE: Fully migrated and well tested!
 
     class UnresolveableIdParameter < StandardError; end
 
-    # TODO: Is this the right place for this method? #4
+    # TODO: Is this the right place for this method? ... Maybe remove to Actions?! #4
     protected def new_action?
       params[:action].eql?('new')
     end
 
-    # TODO: Is this the right place for this method? #4
+    # TODO: Is this the right place for this method? ... Maybe remove to Actions?! #4
     protected def edit_action?
       params[:action].eql?('edit')
     end
