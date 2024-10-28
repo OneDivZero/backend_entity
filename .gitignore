@@ -7,3 +7,6 @@
 /spec/reports/
 /tmp/
 *.gem
+/.idea
+/.DS_Store
+/test/backend_entity_test_app/tmp/

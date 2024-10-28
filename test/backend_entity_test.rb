@@ -1,6 +1,7 @@
 require 'test_helper'
 
-class BackendEntityTest < Minitest::Test
+# Minitest::Test
+class BackendEntityTest < ActiveSupport::TestCase
   describe 'Gem' do
     it 'has a version-number' do
       assert ::BackendEntity::VERSION
@@ -13,6 +14,18 @@ class BackendEntityTest < Minitest::Test
 
     it 'provides a generic error-class' do
       assert Object.const_defined?('BackendEntity::GenericError')
+    end
+
+    it 'provides an error-class for unresolveable types' do
+      assert Object.const_defined?('BackendEntity::UnresolveableEntityType')
+    end
+
+    it 'provides an error-class for unknown types' do
+      assert Object.const_defined?('BackendEntity::UnknownEntityType')
+    end
+
+    it 'provides an error-class for unknown scope' do
+      assert Object.const_defined?('BackendEntity::UnknownEntityScope')
     end
   end
 end

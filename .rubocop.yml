@@ -2,6 +2,23 @@ AllCops:
   TargetRubyVersion: 3.0
   # TODO: FIXME: Remove this line after fixing all the offenses #1
   NewCops: disable
+  SuggestExtensions: false
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'test/**/*.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'test/**/*.rb'
+
+# Allow inline declaration 'private def bar; end'
+Style/AccessModifierDeclarations:
+  EnforcedStyle: inline
+
+Style/CommentedKeyword:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
@@ -16,6 +33,3 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Enabled: true
   EnforcedStyle: double_quotes
-
-Layout/LineLength:
-  Max: 120

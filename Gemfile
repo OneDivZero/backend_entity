@@ -14,6 +14,8 @@ group :test do
   gem 'guard-minitest'
   gem 'minitest-focus'
   gem 'minitest-spec-rails', '~> 7.1'
+  # gem 'minitest-macos-notification', platforms: :ruby, install_if: Machine.is_a_mac?
+  gem 'minitest-macos-notification', platforms: :ruby
 end
 
 group :development, :test do
