@@ -1,5 +1,19 @@
 # BackendEntity
 
+**BackendEntity** is a gem that provides a simple way to abstract the building of a custom Rails-Backend. It reduces boring boilerplate-code in controllers and views using a typical CoC-approach. Born in production and working well since 2019 in many private and business projects!
+
+## Hint
+**BackendEntity** is not designed to be a full-featured backend-solution, but offers you a framework-style manner to build your backend without reinventing the wheel. Regard it as a toolbox for fast building a basic structure out of the box reducing development-time.
+
+## Installation
+
+
+
+## Usage
+
+
+---
+
 TODO: Delete this and the text below, and describe your gem
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/backend_entity`. To experiment with that code, run `bin/console` for an interactive prompt.
