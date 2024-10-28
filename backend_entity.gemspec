@@ -27,13 +27,16 @@ Gem::Specification.new do |spec|
         f.start_with?(*%w[bin/ test/ spec/ features/ .git .github appveyor Gemfile])
     end
   end
+
   spec.bindir = 'exe'
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'rails', '~> 7'
-  # spec.add_development_dependency 'sqlite3'
-  spec.add_development_dependency 'temping'
+  # Dependencies for this gem:
+  spec.add_dependency 'rails', '~> 7' # TODO: At least Rails 6.x should be acceptable #4
+
+  # Development dependencies for this gem:
+  spec.add_development_dependency 'temping' # TODO: This may or should be removed! #4
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

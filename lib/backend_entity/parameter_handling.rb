@@ -5,10 +5,12 @@ module BackendEntity
 
     class UnresolveableIdParameter < StandardError; end
 
+    # TODO: Is this the right place for this method? #4
     protected def new_action?
       params[:action].eql?('new')
     end
 
+    # TODO: Is this the right place for this method? #4
     protected def edit_action?
       params[:action].eql?('edit')
     end
