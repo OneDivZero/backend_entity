@@ -42,4 +42,8 @@ BackendEntityTestApp::Application.initialize!
 
 BackendEntityTestApp::Application.routes.draw do
   resources :examples
+
+  namespace :backend do
+    resources :examples
+  end
 end
