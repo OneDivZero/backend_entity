@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+rails_version = ENV['RAILS_VERSION'] || '∞'
+
 # Specify your gem's dependencies in backend_entity.gemspec
 gemspec
 
@@ -27,4 +29,14 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
   gem 'rubocop', '~> 1.6', require: false
+end
+
+platforms :ruby do
+  if rails_version <= '5.0'
+    gem 'sqlite3', '< 1.4'
+  elsif (rails_version <= '8') || (RUBY_VERSION < '3')
+    gem 'sqlite3', '< 2'
+  else
+    gem 'sqlite3'
+  end
 end
