@@ -1,4 +1,5 @@
 module BackendEntity
+  # TODO: Change wording: Integration vs Reflection, btw. every method starting with 'controller_' is potentially dangerous!!!  #4
   module Reflection
     extend ActiveSupport::Concern
 
