@@ -5,6 +5,7 @@ require_relative 'backend_entity/parameter_handling'
 require_relative 'backend_entity/fetching'
 require_relative 'backend_entity/routes'
 require_relative 'backend_entity/actions'
+require_relative 'backend_entity/controller'
 
 module BackendEntity
   class GenericError < StandardError; end

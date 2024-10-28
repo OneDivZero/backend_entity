@@ -47,3 +47,7 @@ BackendEntityTestApp::Application.routes.draw do
     resources :examples
   end
 end
+
+class DemosController < ActionController::Base
+  include BackendEntity::Controller
+end
