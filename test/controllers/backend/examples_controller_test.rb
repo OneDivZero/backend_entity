@@ -152,6 +152,13 @@ module Backend
 
         assert_flash_message(type: :notice, starts_with: 'Example', ends_with: 'wurde erfolgreich gelöscht.')
       end
+
+      # TODO: We should not fail hard on a backend in this case ... this should be solved in a future realease! #4
+      # e.g. returning back to entity-index with a flash-message
+      # it 'DNW' do
+      #   delete :destroy, params: { id: rand(10_000) }
+      #   bp
+      # end
     end
   end
 end

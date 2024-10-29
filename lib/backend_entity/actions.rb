@@ -9,7 +9,8 @@ module BackendEntity
     attr_reader :entities, :entity
 
     included do
-      rescue_from ActionController::UrlGenerationError, with: :reraise_url_generation_error_with_notes!
+      rescue_from ActionController::UrlGenerationError, with: :handle_url_generation_error!
+      rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
     end
 
     #-------------------------------------------------------------------------------------------------------------------
@@ -85,8 +86,13 @@ module BackendEntity
     # Other methods
     #-------------------------------------------------------------------------------------------------------------------
 
-    private def reraise_url_generation_error_with_notes!(error)
+    private def handle_url_generation_error!(error)
       puts '[WARNING] URL-Generation-Error: Maybe check your routing-method!'.colorize(:yellow)
+      raise error
+    end
+
+    private def handle_record_not_found!(error)
+      puts '[WARNING] Record-Not-Found-Error: Maybe check your routing-method!'.colorize(:yellow)
       raise error
     end
   end
