@@ -13,6 +13,10 @@ Metrics/BlockLength:
   Exclude:
     - 'test/**/*.rb'
 
+Metrics/ClassLength:
+  Exclude:
+    - 'test/**/*.rb'
+
 # Allow inline declaration 'private def bar; end'
 Style/AccessModifierDeclarations:
   EnforcedStyle: inline
@@ -27,6 +31,9 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/Semicolon:
+  Enabled: false
+
+Style/SingleLineMethods:
   Enabled: false
 
 Style/StringLiterals:

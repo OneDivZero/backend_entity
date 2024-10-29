@@ -4,6 +4,7 @@ module Testing
       class FlashObjectNotPresent < StandardError; end
       class FlashMessageDefinitionInsufficient < StandardError; end
 
+      # rubocop:disable Metrics/AbcSize
       def assert_flash_message(type:, with: nil, starts_with: nil, ends_with: nil)
         raise FlashObjectNotPresent if flash.nil?
 
@@ -19,6 +20,7 @@ module Testing
           assert_equal with, flash[type]
         end
       end
+      # rubocop:enable Metrics/AbcSize
     end
   end
 end

@@ -25,7 +25,7 @@ guard :minitest do
   watch(%r{^test/test_helper\.rb$})      { 'test' }
 
   # Custom watchers:
-  watch(%r{^lib/backend_entity/actions.rb}) { |m| "test/controllers/backend/examples_controller_test.rb" }
+  watch(%r{^lib/backend_entity/actions.rb}) { |_m| 'test/controllers/backend/examples_controller_test.rb' }
 
   # with Minitest::Spec
   # watch(%r{^spec/(.*)_spec\.rb$})

@@ -13,7 +13,7 @@ module BackendEntity
 
     # NOTE: In the former implementation the keyword-arg :wording was present, we skipped it now! #4
     # Now we rely fully on 'model_name.human' instead ... (usage of I18n should be favoured)
-    def entity_flash_message_for(action, on: , result: false, error: nil)
+    def entity_flash_message_for(action, on:, result: false, error: nil)
       if result
         flash[:notice] = notice_flash_for(action, on)
       else
@@ -32,7 +32,7 @@ module BackendEntity
 
     private def entity_wording_for(entity)
       wording = entity.model_name.human.dup
-      "#{wording} #{entity.to_s}"
+      "#{wording} #{entity}"
     end
 
     private def base_error_cause_for(entity)
