@@ -53,6 +53,10 @@ module BackendEntity
       entity_name.underscore.concat('_id').to_sym
     end
 
+    protected def entity_route_key
+      (@entity || entity_class).model_name.singular_route_key
+    end
+
     protected def entity_column_names
       entity_class.column_names.collect(&:to_sym)
     end
