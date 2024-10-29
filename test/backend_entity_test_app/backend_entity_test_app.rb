@@ -78,7 +78,6 @@ class DemosController < ActionController::Base
   include BackendEntity::Controller
 end
 
-
 class CreateAllTables < ActiveRecord::VERSION::MAJOR >= 5 ? ActiveRecord::Migration[5.0] : ActiveRecord::Migration
   def self.up
     create_table(:examples) { |t| t.string :name }
