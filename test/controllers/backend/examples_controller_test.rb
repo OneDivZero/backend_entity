@@ -2,12 +2,12 @@ require 'test_helper'
 
 module Backend
   class ExamplesControllerTest < ActionController::TestCase
-    # NOTE: Automatic resolution of controller-class does not work!
-    self.controller_class = ::Backend::ExamplesController
+    # NOTE: Automatic resolution of controller-class does not work in this TestCase! #4
+    self.controller_class = Backend::ExamplesController
 
     describe 'Action #index' do
       setup do
-        @example = ::Example.create
+        Example.create
       end
 
       it 'loads entities' do
@@ -21,7 +21,7 @@ module Backend
 
     describe 'Action #show' do
       setup do
-        @example = ::Example.create
+        @example = Example.create
       end
 
       it 'loads a single entity' do
@@ -30,6 +30,10 @@ module Backend
         assert_response :success
         assert_equal @example, assigns(:entity)
         assert_template 'backend/examples/show'
+      end
+
+      it 'raises with default rails-behaviour if the id is not given in the request' do
+        assert_raise(ActionController::UrlGenerationError) { get :show }
       end
     end
 
@@ -46,7 +50,7 @@ module Backend
 
     describe 'Action #edit' do
       setup do
-        @example = ::Example.create
+        @example = Example.create
       end
 
       it 'loads a single entity for editing' do
@@ -71,7 +75,7 @@ module Backend
 
     describe 'Action #update' do
       setup do
-        @example = ::Example.create
+        @example = Example.create
       end
 
       it 'updates a single entity' do
@@ -83,7 +87,7 @@ module Backend
 
     describe 'Action #destroy' do
       setup do
-        @example = ::Example.create
+        @example = Example.create
       end
 
       it 'destroys a single entity' do

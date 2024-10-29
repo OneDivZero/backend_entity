@@ -6,6 +6,10 @@ module BackendEntity
 
     attr_reader :entities, :entity
 
+    included do
+      rescue_from ActionController::UrlGenerationError, with: :reraise_url_generation_error_with_notes!
+    end
+
     #-------------------------------------------------------------------------------------------------------------------
     # Default CRUD-actions
     #-------------------------------------------------------------------------------------------------------------------
@@ -73,6 +77,15 @@ module BackendEntity
     # TODO: Rework this concept! #3
     protected def restrict_action
       raise NonAllowedAction
+    end
+
+    #-------------------------------------------------------------------------------------------------------------------
+    # Other methods
+    #-------------------------------------------------------------------------------------------------------------------
+
+    private def reraise_url_generation_error_with_notes!(error)
+      puts '[WARNING] URL-Generation-Error: Maybe check your routing-method!'.colorize(:yellow)
+      raise error
     end
   end
 end
