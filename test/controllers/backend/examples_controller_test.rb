@@ -57,5 +57,42 @@ module Backend
         assert_template 'backend/examples/form'
       end
     end
+
+    describe 'Action #create' do
+      it 'creates a new entity' do
+        assert_difference('Example.count') do
+          post :create, params: { example: { name: 'Example' } }
+        end
+
+        # assert_redirected_to backend_example_path(assigns(:entity)) # NOTE: Default is here rendering :index
+        assert_redirected_to backend_examples_path
+      end
+    end
+
+    describe 'Action #update' do
+      setup do
+        @example = ::Example.create
+      end
+
+      it 'updates a single entity' do
+        patch :update, params: { id: @example.id, example: { name: 'NewExampleName' } }
+
+        assert_redirected_to backend_example_path(assigns(:entity))
+      end
+    end
+
+    describe 'Action #destroy' do
+      setup do
+        @example = ::Example.create
+      end
+
+      it 'destroys a single entity' do
+        assert_difference('Example.count', -1) do
+          delete :destroy, params: { id: @example.id }
+        end
+
+        assert_redirected_to backend_examples_path
+      end
+    end
   end
 end
