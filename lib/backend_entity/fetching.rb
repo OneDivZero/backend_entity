@@ -16,7 +16,7 @@ module BackendEntity
 
     # NOTE: All models are decorated using Draper only for backend-purposes
     protected def load_entity(id = nil)
-      id ||= entity_id_from_params
+      id ||= entity_id_from_params unless new_action?
       @entity = (new_action? ? entity_class.new : scoped_entity_class.find(id))
 
       # TODO: We skip this for now ... requires module EntityPresentation #3
