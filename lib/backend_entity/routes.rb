@@ -23,7 +23,8 @@ module BackendEntity
     %w[show create update destroy new edit].each do |action_name|
       define_method("entity_#{action_name}_path") do |entity = nil, params: {}|
         entity ||= @entity
-        public_send("entity_#{action_name}_path_name".to_sym, entity, params)
+        path = send("entity_#{action_name}_path_name").to_sym
+        public_send(path, entity, params)
       end
     end
 
