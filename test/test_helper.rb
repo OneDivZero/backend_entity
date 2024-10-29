@@ -4,6 +4,8 @@
 
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
+ENV['RAILS_ENV'] ||= 'test'
+
 require './test/requirements'
 require 'backend_entity'
 require 'backend_entity_test_app/backend_entity_test_app'
@@ -35,6 +37,17 @@ ActiveRecord::Base.establish_connection(
 
 CreateAllTables.up unless ActiveRecord::Base.connection.table_exists?('examples')
 
+# module DatabaseDeleter
+#   def setup
+#     Example.delete_all
+#     AnotherExample.delete_all
+#     InheritedExample.delete_all
+#     super
+#   end
+# end
+
+# Test::Unit::TestCase.send :prepend, DatabaseDeleter
+
 #-----------------------------------------------------------------------------------------------------------------------
 # TestCase-Config
 #-----------------------------------------------------------------------------------------------------------------------
@@ -42,11 +55,10 @@ CreateAllTables.up unless ActiveRecord::Base.connection.table_exists?('examples'
 module ActiveSupport
   class TestCase
     # TODO: #teardown never get's invoked during the tests #3
-    teardown do
-      puts 'ActiveSupport::TestCase.teardown'.colorize(:green)
-      # raise 'ActiveSupport::TestCase.teardown'
-      Temping.teardown # Required global teardown for gem 'temping'
-    end
+    # teardown do
+    #   puts 'ActiveSupport::TestCase.teardown'.colorize(:green)
+    #   # raise 'ActiveSupport::TestCase.teardown'
+    # end
   end
 end
 
