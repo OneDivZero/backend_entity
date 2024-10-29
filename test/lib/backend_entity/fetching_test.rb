@@ -30,18 +30,8 @@ module BackendEntity
 
     describe 'Fetching a single entity' do
       before do
-        ::Temping.create :another_example do
-          with_columns do |t|
-            # t.integer :id # Causes: ActiveRecord::StatementInvalid: SQLite3::SQLException: duplicate column name: id
-          end
-        end
-
         @example = ::AnotherExample.create
         @controller = ::AnotherExamplesController.new
-      end
-
-      after do
-        Temping.teardown # NOTE: Required cause global teardown for gem 'temping' does not work!!!
       end
 
       it 'loads a single entity for a given ID via method-argument' do

@@ -23,7 +23,7 @@ require 'backend_entity_test_app/backend_entity_test_app'
 require './test/support/config/reporting'
 
 #-----------------------------------------------------------------------------------------------------------------------
-# TestCase-Config
+# Database-Config
 #-----------------------------------------------------------------------------------------------------------------------
 
 require 'active_record'
@@ -32,6 +32,12 @@ ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',
   database: ':memory:'
 )
+
+CreateAllTables.up unless ActiveRecord::Base.connection.table_exists?('examples')
+
+#-----------------------------------------------------------------------------------------------------------------------
+# TestCase-Config
+#-----------------------------------------------------------------------------------------------------------------------
 
 module ActiveSupport
   class TestCase

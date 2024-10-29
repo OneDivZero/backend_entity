@@ -2,18 +2,6 @@ require 'test_helper'
 
 module BackendEntity
   class ParametersTest < ActiveSupport::TestCase
-    class ::ExamplesController < ::ActionController::Base
-      include BackendEntity::Reflection
-      include BackendEntity::Scopes
-      include BackendEntity::Parameters
-    end
-
-    class ::AnotherExamplesController < ::ActionController::Base
-      include BackendEntity::Reflection
-      include BackendEntity::Scopes
-      include BackendEntity::Parameters
-    end
-
     describe 'Action-Support-Methods' do
       before do
         @controller = ::ExamplesController.new
@@ -61,18 +49,8 @@ module BackendEntity
 
     describe 'Entity-Parameter-Methods' do
       before do
-        ::Temping.create :another_example do
-          with_columns do |t|
-            # t.integer :id # Causes: ActiveRecord::StatementInvalid: SQLite3::SQLException: duplicate column name: id
-          end
-        end
-
-        # @example = ::AnotherExample.create
+        @example = ::AnotherExample.create
         @controller = ::AnotherExamplesController.new
-      end
-
-      after do
-        Temping.teardown # NOTE: Required cause global teardown for gem 'temping' does not work!!!
       end
 
       it 'retrieves entity-params from controller-params' do

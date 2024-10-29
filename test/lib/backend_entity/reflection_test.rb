@@ -2,8 +2,6 @@ require 'test_helper'
 
 module BackendEntity
   class ReflectionTest < ActiveSupport::TestCase
-    class ::Example < ::ActiveRecord::Base; end # NOTE: This clashes with Temping!
-
     class ::ExamplesController < ::ActionController::Base
       include BackendEntity::Reflection
     end
@@ -83,23 +81,8 @@ module BackendEntity
 
       describe 'entity-inheritation' do
         before do
-          ::Temping.create :another_example do
-            with_columns do |t|
-            end
-          end
-
-          ::Temping.create :inherited_example do
-            with_columns do |t|
-              t.string :type
-            end
-          end
-
           @another_controller = AnotherExamplesController.new
           @inherited_controller = InheritedExamplesController.new
-        end
-
-        after do
-          Temping.teardown # NOTE: Required cause global teardown for gem 'temping' does not work!!!
         end
 
         it 'detects entity-inheritation' do

@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rails', '~> 7' # TODO: At least Rails 6.x should be acceptable #4
 
   # Development dependencies for this gem:
-  spec.add_development_dependency 'temping' # TODO: This may or should be removed! #4
+  # spec.add_development_dependency 'temping' # TODO: This may or should be removed! #4
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

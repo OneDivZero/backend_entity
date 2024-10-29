@@ -2,7 +2,11 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require 'rails/all'
 
-# ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+#-----------------------------------------------------------------------------------------------------------------------
+# Setup of database-connection for testing
+#-----------------------------------------------------------------------------------------------------------------------
+
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Setup of rails-test-app
@@ -48,6 +52,37 @@ BackendEntityTestApp::Application.routes.draw do
   end
 end
 
+#-----------------------------------------------------------------------------------------------------------------------
+# Setup of models
+#-----------------------------------------------------------------------------------------------------------------------
+
+class Example < ActiveRecord::Base; end
+
+class AnotherExample < ActiveRecord::Base; end
+
+class InheritedExample < ActiveRecord::Base; end
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Setup of controllers
+#-----------------------------------------------------------------------------------------------------------------------
+
+class ExamplesController < ::ActionController::Base
+  include BackendEntity::Controller
+end
+
+class AnotherExamplesController < ::ActionController::Base
+  include BackendEntity::Controller
+end
+
 class DemosController < ActionController::Base
   include BackendEntity::Controller
+end
+
+
+class CreateAllTables < ActiveRecord::VERSION::MAJOR >= 5 ? ActiveRecord::Migration[5.0] : ActiveRecord::Migration
+  def self.up
+    create_table(:examples) { |t| t.string :name }
+    create_table(:another_examples) { |t| t.string :name }
+    create_table(:inherited_examples) { |t| t.string :type; t.string :name }
+  end
 end
