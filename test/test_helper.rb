@@ -52,6 +52,8 @@ CreateAllTables.up unless ActiveRecord::Base.connection.table_exists?('examples'
 # TestCase-Config
 #-----------------------------------------------------------------------------------------------------------------------
 
+Rails::Controller::Testing.install
+
 module ActiveSupport
   class TestCase
     # TODO: #teardown never get's invoked during the tests #3
