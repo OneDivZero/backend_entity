@@ -19,6 +19,8 @@ require 'backend_entity_test_app/backend_entity_test_app'
 #   Dir[Rails.root.join('test', folder, '**', '*.rb')].sort.each { |f| require f }
 # end
 
+require './test/support/testing/assertions/flash_messages'
+
 #-----------------------------------------------------------------------------------------------------------------------
 # Test-Reporting-Config
 #-----------------------------------------------------------------------------------------------------------------------

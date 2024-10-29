@@ -2,6 +2,8 @@ require 'test_helper'
 
 module Backend
   class ExamplesControllerTest < ActionController::TestCase
+    include Testing::Assertions::FlashMessages
+
     # NOTE: Automatic resolution of controller-class does not work in this TestCase ... Whyever! #4
     self.controller_class = Backend::ExamplesController
 
@@ -95,6 +97,12 @@ module Backend
           post :create, params: { example: { name: 'Example' } }
         end
       end
+
+      it 'provides a flash-message on success' do
+        post :create, params: { example: { name: 'Example' } }
+
+        assert_flash_message(type: :notice, starts_with: 'Example', ends_with: 'wurde erfolgreich erstellt.')
+      end
     end
 
     describe 'Action #update' do
@@ -114,6 +122,12 @@ module Backend
         @example.reload
         assert_equal 'UpdatedExampleName', assigns(:entity).name
       end
+
+      it 'provides a flash-message on success' do
+        patch :update, params: { id: @example.id, example: { name: 'UpdatedExampleName' } }
+
+        assert_flash_message(type: :notice, starts_with: 'Example', ends_with: 'wurde erfolgreich geändert.')
+      end
     end
 
     describe 'Action #destroy' do
@@ -131,6 +145,12 @@ module Backend
         assert_difference('Example.count', -1) do
           delete :destroy, params: { id: @example.id }
         end
+      end
+
+      it 'provides a flash-message on success' do
+        delete :destroy, params: { id: @example.id }
+
+        assert_flash_message(type: :notice, starts_with: 'Example', ends_with: 'wurde erfolgreich gelöscht.')
       end
     end
   end
