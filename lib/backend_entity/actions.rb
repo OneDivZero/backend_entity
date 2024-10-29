@@ -51,7 +51,7 @@ module BackendEntity
     # CRUD-support-methods
     #-------------------------------------------------------------------------------------------------------------------
 
-    protected def perform_create(error_msg = nil)
+    protected def perform_create(_error_msg = nil)
       if @entity.save
         # @entity.action_flash(action_name, result: true) # TODO: action_flash needs to be migrated #4
         redirect_to action: :index

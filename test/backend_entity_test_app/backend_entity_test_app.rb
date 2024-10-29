@@ -72,7 +72,7 @@ module Backend
   class ExamplesController < ::ActionController::Base
     include BackendEntity::Controller
 
-    before_action :load_entity, only: [:show, :edit, :update, :destroy, :new, :edit]
+    before_action :load_entity, only: %i[show edit update destroy new edit]
   end
 end
 
