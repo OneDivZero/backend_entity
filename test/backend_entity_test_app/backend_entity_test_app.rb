@@ -68,8 +68,10 @@ class ::InheritedExamplesController < ::ActionController::Base
   include BackendEntity::Controller
 end
 
-class DemosController < ActionController::Base
-  include BackendEntity::Controller
+module Backend
+  class ExamplesController < ::ActionController::Base
+    include BackendEntity::Controller
+  end
 end
 
 #-----------------------------------------------------------------------------------------------------------------------
