@@ -2,18 +2,6 @@ require 'test_helper'
 
 module BackendEntity
   class FetchingTest < ActiveSupport::TestCase
-    class ::Example < ::ActiveRecord::Base; end
-
-    class ::ExamplesController < ::ActionController::Base
-      include BackendEntity::Reflection
-      include BackendEntity::Fetching
-    end
-
-    class ::AnotherExamplesController < ::ActionController::Base
-      include BackendEntity::Reflection
-      include BackendEntity::Fetching
-    end
-
     describe 'Fetching entities' do
       before do
         @controller = ::ExamplesController.new

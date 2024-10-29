@@ -2,14 +2,6 @@ require 'test_helper'
 
 module BackendEntity
   class RoutesTest < ActiveSupport::TestCase
-    class ::Example < ::ActiveRecord::Base; end
-
-    class ::ExamplesController < ::ActionController::Base
-      include BackendEntity::Reflection
-      include BackendEntity::Fetching
-      include BackendEntity::Routes
-    end
-
     # TODO: Why can't I access this method from the test? #3
     # def rails_routing_keys
     #   Rails.application.routes.named_routes.send(:routes).keys

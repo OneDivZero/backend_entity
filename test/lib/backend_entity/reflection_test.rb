@@ -2,18 +2,6 @@ require 'test_helper'
 
 module BackendEntity
   class ReflectionTest < ActiveSupport::TestCase
-    class ::ExamplesController < ::ActionController::Base
-      include BackendEntity::Reflection
-    end
-
-    class ::AnotherExamplesController < ::ActionController::Base
-      include BackendEntity::Reflection
-    end
-
-    class ::InheritedExamplesController < ::ActionController::Base
-      include BackendEntity::Reflection
-    end
-
     describe 'Concern' do
       it 'provides accessors for the metadata of an entity' do
         assert ExamplesController.respond_to?(:entity_model_name)

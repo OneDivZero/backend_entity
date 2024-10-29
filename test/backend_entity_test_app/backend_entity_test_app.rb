@@ -53,16 +53,6 @@ BackendEntityTestApp::Application.routes.draw do
 end
 
 #-----------------------------------------------------------------------------------------------------------------------
-# Setup of models
-#-----------------------------------------------------------------------------------------------------------------------
-
-class Example < ActiveRecord::Base; end
-
-class AnotherExample < ActiveRecord::Base; end
-
-class InheritedExample < ActiveRecord::Base; end
-
-#-----------------------------------------------------------------------------------------------------------------------
 # Setup of controllers
 #-----------------------------------------------------------------------------------------------------------------------
 
@@ -74,9 +64,27 @@ class AnotherExamplesController < ::ActionController::Base
   include BackendEntity::Controller
 end
 
+class ::InheritedExamplesController < ::ActionController::Base
+  include BackendEntity::Controller
+end
+
 class DemosController < ActionController::Base
   include BackendEntity::Controller
 end
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Setup of models
+#-----------------------------------------------------------------------------------------------------------------------
+
+class Example < ActiveRecord::Base; end
+
+class AnotherExample < ActiveRecord::Base; end
+
+class InheritedExample < ActiveRecord::Base; end
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Setup of database
+#-----------------------------------------------------------------------------------------------------------------------
 
 class CreateAllTables < ActiveRecord::VERSION::MAJOR >= 5 ? ActiveRecord::Migration[5.0] : ActiveRecord::Migration
   def self.up
