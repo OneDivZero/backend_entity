@@ -5,6 +5,7 @@ require_relative 'backend_entity/parameters'
 require_relative 'backend_entity/fetching'
 require_relative 'backend_entity/pathes'
 require_relative 'backend_entity/routes'
+require_relative 'backend_entity/flashes'
 require_relative 'backend_entity/actions'
 require_relative 'backend_entity/controller'
 

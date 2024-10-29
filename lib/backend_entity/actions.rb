@@ -2,6 +2,8 @@ module BackendEntity
   module Actions
     extend ActiveSupport::Concern
 
+    include BackendEntity::Flashes
+
     class NonAllowedAction < StandardError; end
 
     attr_reader :entities, :entity
@@ -20,13 +22,9 @@ module BackendEntity
 
     def show; end
 
-    def new
-      render_form
-    end
+    def new; render_form end
 
-    def edit
-      render_form
-    end
+    def edit; render_form end
 
     # TODO: Method-arguments are powered by action_args-gem #4
     def create(custom_params = nil, error_msg = nil)
@@ -38,6 +36,7 @@ module BackendEntity
     def update(custom_params = nil)
       if @entity.update(custom_params || entity_params)
         # @entity.action_flash(action_name, result: true) # TODO: action_flash needs to be migrated #4
+        entity_flash_message_for(action_name, on: @entity, result: true)
         redirect_to_entity
       else
         # @entity.action_flash(action_name) # TODO: action_flash needs to be migrated #4
@@ -48,6 +47,7 @@ module BackendEntity
     def destroy
       @entity.destroy
       # @entity.action_flash(action_name, result: @entity.destroy) # TODO: action_flash needs to be migrated #4
+      entity_flash_message_for(action_name, on: @entity, result: @entity.destroyed?)
       redirect_to entity_index_path
     end
 
@@ -55,12 +55,14 @@ module BackendEntity
     # CRUD-support-methods
     #-------------------------------------------------------------------------------------------------------------------
 
-    protected def perform_create(_error_msg = nil)
+    protected def perform_create(error_msg = nil)
       if @entity.save
         # @entity.action_flash(action_name, result: true) # TODO: action_flash needs to be migrated #4
-        redirect_to action: :index
+        entity_flash_message_for(action_name, on: @entity, result: true)
+        redirect_to(action: :index)
       else
         # @entity.action_flash(action_name, error_msg: error_msg) # TODO: action_flash needs to be migrated #4
+        entity_flash_message_for(action_name, on: @entity, result: false, error: error_msg)
         render_form
       end
     end
