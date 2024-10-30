@@ -24,7 +24,7 @@ module BackendEntity
     # Permit the controller-params for an entiity using the derived entity_key.
     # Could be parameterized (this is new!) or overridden inside any controller.
     # When nothing is specified, then all columns of the entity-class will be permitted!
-    # IMPROVE: Maybe a special declaratioon-method is a better way for doing this job #3
+    # IMPROVE: Maybe a special declaration-method is a better way for doing this job #3
     protected def entity_params(using: [])
       # TODO: Use a logger instead! #3
       puts '[WARNING] #entity_params is using all entity-columns in your controller!'.colorize(:yellow) if using.blank?

@@ -36,6 +36,7 @@ module BackendEntity
     end
 
     private def base_error_cause_for(entity)
+      # TODO: Why should we only regard the first error? #4
       entity.errors[:base]&.first if entity.respond_to?(:errors) && entity.errors[:base].present?
     end
 

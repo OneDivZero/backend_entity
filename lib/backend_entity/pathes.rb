@@ -2,6 +2,7 @@ module BackendEntity
   module Pathes
     extend ActiveSupport::Concern
 
+    # NOTE: This is a fast integration of the pathes and needs to be reworked or to be configurable at least #4
     PREFIX = 'backend'.freeze
 
     included do

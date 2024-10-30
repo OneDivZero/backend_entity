@@ -3,8 +3,10 @@ module BackendEntity
     extend ActiveSupport::Concern
     # NOTE: Fully migrated but not yet tested!
 
+    DEFAULT_ENTITY_SCOPE = :backend
+
     protected def backend_entity_scope
-      :backend
+      DEFAULT_ENTITY_SCOPE
     end
 
     protected def entity_has_backend_scope?
@@ -15,6 +17,7 @@ module BackendEntity
       entity_has_backend_scope? ? entity_class.public_send(backend_entity_scope) : entity_class
     end
 
+    # TODO: Check integration of this stuff! #4
     protected def allowed_scopes
       []
     end

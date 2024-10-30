@@ -12,6 +12,6 @@ if RUBY_PLATFORM.match?(/darwin/) # OSX-Only
   test_reporters.push(Minitest::Reporters::MacosNotificationReporter.new(title: 'BackendEntity'))
 end
 
-if ENV.fetch('USE_MINITEST_REPORTERS', 'true') == 'true'
+if ENV.fetch('USE_MINITEST_REPORTERS').eql?('true')
   Minitest::Reporters.use!(test_reporters, ENV, Minitest.backtrace_filter)
 end

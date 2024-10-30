@@ -1,3 +1,5 @@
+# TODO: This whole test-case needs to be reworked! #4
+
 require 'test_helper'
 
 module BackendEntity

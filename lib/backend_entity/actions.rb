@@ -6,17 +6,17 @@ module BackendEntity
 
     class NonAllowedAction < StandardError; end
 
-    attr_reader :entities, :entity
-
     included do
       rescue_from ActionController::UrlGenerationError, with: :handle_url_generation_error!
-      rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+      rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found!
     end
 
     #-------------------------------------------------------------------------------------------------------------------
     # Default CRUD-actions
     #-------------------------------------------------------------------------------------------------------------------
 
+    # TODO: Move assignment to @entities to :list_entities #4
+    # And write def index; list_entities; end instead
     def index
       @entities = list_entities
     end
@@ -40,6 +40,7 @@ module BackendEntity
         entity_flash_message_for(action_name, on: @entity, result: true)
         redirect_to_entity
       else
+        entity_flash_message_for(action_name, on: @entity, result: false)
         # @entity.action_flash(action_name) # TODO: action_flash needs to be migrated #4
         render_form
       end
@@ -72,7 +73,7 @@ module BackendEntity
       render 'form'
     end
 
-    # TODO: This method is not yet fully migrated #4
+    # TODO: This method is not yet fully migrated and will be done in the follow-up-refactoring-branch #4
     protected def redirect_to_entity
       redirect_to entity_show_path
     end

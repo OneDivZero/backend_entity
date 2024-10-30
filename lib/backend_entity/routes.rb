@@ -11,11 +11,11 @@ module BackendEntity
     included do
       alias_method :entity_path, :entity_show_path
 
-      entity_path_methods = ALL_PATH_METHODS.map do |action_name|
+      entity_view_helper_path_methods = ALL_PATH_METHODS.map do |action_name|
         "entity_#{action_name}_path".to_sym
       end
 
-      helper_method(*entity_path_methods)
+      helper_method(*entity_view_helper_path_methods)
       helper_method(:entity_path)
     end
 

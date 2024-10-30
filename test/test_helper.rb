@@ -5,6 +5,7 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
 
 ENV['RAILS_ENV'] ||= 'test'
+ENV['USE_MINITEST_REPORTERS'] = 'true'
 
 require './test/requirements'
 require 'backend_entity'

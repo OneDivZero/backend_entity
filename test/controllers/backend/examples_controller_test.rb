@@ -84,6 +84,7 @@ module Backend
       end
     end
 
+    # TODO: all negative test-cases are not covered yet! #4
     describe 'Action #create' do
       it 'succeeds on a request and renders view :index' do
         post :create, params: { example: { name: 'Example' } }
@@ -105,6 +106,7 @@ module Backend
       end
     end
 
+    # TODO: all negative test-cases are not covered yet! #4
     describe 'Action #update' do
       setup do
         @example = Example.create
@@ -130,6 +132,7 @@ module Backend
       end
     end
 
+    # TODO: all negative test-cases are not covered yet! #4
     describe 'Action #destroy' do
       setup do
         @example = Example.create
